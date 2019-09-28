@@ -1,5 +1,6 @@
 package com.yswl.shop_phone.service.impl;
 
+import com.yswl.shop_phone.common.utils.PageVo;
 import com.yswl.shop_phone.common.utils.ResultUtil;
 import com.yswl.shop_phone.common.vo.ResultVo;
 import com.yswl.shop_phone.dao.PhoneMapper;
@@ -8,6 +9,7 @@ import com.yswl.shop_phone.service.PhoneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -57,5 +59,41 @@ public class PhoneServiceImpl implements PhoneService {
             e.printStackTrace();
             return ResultUtil.exec(false,"ERROR",e.getMessage());
         }
+    }
+
+
+    @Override
+    public PageVo<Phone> queryPhoneByPageGood(int page, int limit) {
+        HashMap<String,Object> map=new HashMap<>();
+        map.put("index",(page-1)*limit);
+        map.put("count",limit);
+        return ResultUtil.exec(page,limit,phoneMapper.goodPhone(),phoneMapper.selectByPageGood(map));
+    }
+
+    @Override
+    public PageVo<Phone> queryPhoneByPageBatter(int page, int limit) {
+        HashMap<String,Object> map=new HashMap<>();
+        map.put("index",(page-1)*limit);
+        map.put("count",limit);
+        return ResultUtil.exec(page,limit,phoneMapper.batterPhone(),phoneMapper.selectByPageBatter(map));
+    }
+
+
+    //假删除
+    @Override
+    public ResultVo deletePhoneById(Integer id) {
+        try {
+            phoneMapper.deleteById(id);
+            return ResultUtil.exec(true,"OK","删除成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    @Override
+    public ResultVo queryPhoneById(Integer id) {
+        return null;
     }
 }

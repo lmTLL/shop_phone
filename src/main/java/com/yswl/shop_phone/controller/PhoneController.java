@@ -1,6 +1,7 @@
 package com.yswl.shop_phone.controller;
 
 
+import com.yswl.shop_phone.common.utils.PageVo;
 import com.yswl.shop_phone.common.vo.ResultVo;
 import com.yswl.shop_phone.entity.Phone;
 import com.yswl.shop_phone.service.PhoneService;
@@ -40,5 +41,27 @@ public class PhoneController {
     @GetMapping("/phone/queryById.do")
     public ResultVo queryByid(Integer id){
         return phoneService.queryById(id);
+    }
+
+    /**
+     * 分页展示普通手机号
+     * @param page
+     * @param limit
+     * @return
+     */
+    @GetMapping("/showGoodPhones.do")
+    public PageVo<Phone> showGoodPhones(int page, int limit){
+        return phoneService.queryPhoneByPageGood(page,limit);
+    }
+
+    /**
+     * 分页展示靓号
+     * @param page
+     * @param limit
+     * @return
+     */
+    @GetMapping("/showBatterPhones.do")
+    public PageVo<Phone> showBatterPhones(int page, int limit){
+        return phoneService.queryPhoneByPageBatter(page,limit);
     }
 }
