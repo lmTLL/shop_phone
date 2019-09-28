@@ -6,9 +6,6 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.*;
 
 @Data
-@Setter
-@Getter
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @TableName(value = "t_phone")
