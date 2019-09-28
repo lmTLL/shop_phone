@@ -8,9 +8,6 @@ import lombok.*;
 import java.math.BigDecimal;
 
 @Data
-@Setter
-@Getter
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @TableName(value = "t_phone")

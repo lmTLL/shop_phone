@@ -15,7 +15,7 @@ public class OrdersController {
     private OrdersService ordersService;
 
     /**
-     * 获取所有用户列表
+     * 获取所有订单列表
      * @return
      */
     @GetMapping("/Orders/all.do")
