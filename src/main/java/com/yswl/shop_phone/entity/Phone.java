@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.*;
 
+import java.math.BigDecimal;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,7 +17,7 @@ public class Phone {
     private int id;
     private String number;
     private int status;
-    private double money;
+    private BigDecimal money;
     private String operator;
     private String meaning;
     private int beauty;

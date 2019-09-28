@@ -20,8 +20,13 @@ public class ResultUtil {
         return resultVo;
     }
 
-    public static <T> PageVo<T> exec(int page, int size, long count, List<T> data){
-        PageVo pageVo=new PageVo();
+    public static <T> PageVo<T> exec(boolean istrue, int page, int size, long count, List<T> data){
+        PageVo pageVo = new PageVo();
+        if(istrue){
+            pageVo.setCode(SystemCon.OK);
+        }else {
+            pageVo.setCode(SystemCon.ERROR);
+        }
         pageVo.setPage(page);
         pageVo.setSize(size);
         pageVo.setCount(count);

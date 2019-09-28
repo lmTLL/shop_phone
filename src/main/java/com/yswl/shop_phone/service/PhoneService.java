@@ -14,8 +14,7 @@ public interface PhoneService {
     ResultVo addPhone(Phone phone);
     //按id删除
     ResultVo deletePhoneById(Integer id);
-    //按id获取
-    ResultVo queryPhoneById(Integer id);
+
 
 
     //查询所有
