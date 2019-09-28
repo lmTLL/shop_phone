@@ -61,21 +61,21 @@ public class PhoneServiceImpl implements PhoneService {
         }
     }
 
-
+    //分页查询全部普通手机号
     @Override
     public PageVo<Phone> queryPhoneByPageGood(int page, int limit) {
         HashMap<String,Object> map=new HashMap<>();
         map.put("index",(page-1)*limit);
         map.put("count",limit);
-        return ResultUtil.exec(page,limit,phoneMapper.goodPhone(),phoneMapper.selectByPageGood(map));
+        return ResultUtil.exec(true,page,limit,phoneMapper.goodPhone(),phoneMapper.selectByPageGood(map));
     }
-
+    //分页查询所有靓号
     @Override
     public PageVo<Phone> queryPhoneByPageBatter(int page, int limit) {
         HashMap<String,Object> map=new HashMap<>();
         map.put("index",(page-1)*limit);
         map.put("count",limit);
-        return ResultUtil.exec(page,limit,phoneMapper.batterPhone(),phoneMapper.selectByPageBatter(map));
+        return ResultUtil.exec(true,page,limit,phoneMapper.batterPhone(),phoneMapper.selectByPageBatter(map));
     }
 
 
@@ -87,13 +87,9 @@ public class PhoneServiceImpl implements PhoneService {
             return ResultUtil.exec(true,"OK","删除成功");
         } catch (Exception e) {
             e.printStackTrace();
+            return ResultUtil.exec(false,"ERROR",e.getMessage());
         }
-        return null;
     }
 
 
-    @Override
-    public ResultVo queryPhoneById(Integer id) {
-        return null;
-    }
 }
