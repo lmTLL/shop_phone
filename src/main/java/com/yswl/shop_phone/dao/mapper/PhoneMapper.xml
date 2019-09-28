@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yswl.shop_phone.dao.PhoneMapper">
+  <resultMap id="BaseResultMap" type="com.yswl.shop_phone.entity.Phone">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="number" jdbcType="VARCHAR" property="number" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="money" jdbcType="DECIMAL" property="money" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="meaning" jdbcType="VARCHAR" property="meaning" />
+    <result column="beauty" jdbcType="INTEGER" property="beauty" />
+    <result column="meal" jdbcType="VARCHAR" property="meal" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, number, status, money, operator, meaning, beauty, meal
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_phone
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_phone
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yswl.shop_phone.entity.Phone">
+    insert into t_phone (id, number, status, 
+      money, operator, meaning, 
+      beauty, meal)
+    values (#{id,jdbcType=INTEGER}, #{number,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{money,jdbcType=DECIMAL}, #{operator,jdbcType=VARCHAR}, #{meaning,jdbcType=VARCHAR}, 
+      #{beauty,jdbcType=INTEGER}, #{meal,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yswl.shop_phone.entity.Phone">
+    insert into t_phone
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="number != null">
+        number,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="operator != null">
+        operator,
+      </if>
+      <if test="meaning != null">
+        meaning,
+      </if>
+      <if test="beauty != null">
+        beauty,
+      </if>
+      <if test="meal != null">
+        meal,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="meaning != null">
+        #{meaning,jdbcType=VARCHAR},
+      </if>
+      <if test="beauty != null">
+        #{beauty,jdbcType=INTEGER},
+      </if>
+      <if test="meal != null">
+        #{meal,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yswl.shop_phone.entity.Phone">
+    update t_phone
+    <set>
+      <if test="number != null">
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="operator != null">
+        operator = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="meaning != null">
+        meaning = #{meaning,jdbcType=VARCHAR},
+      </if>
+      <if test="beauty != null">
+        beauty = #{beauty,jdbcType=INTEGER},
+      </if>
+      <if test="meal != null">
+        meal = #{meal,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yswl.shop_phone.entity.Phone">
+    update t_phone
+    set number = #{number,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      money = #{money,jdbcType=DECIMAL},
+      operator = #{operator,jdbcType=VARCHAR},
+      meaning = #{meaning,jdbcType=VARCHAR},
+      beauty = #{beauty,jdbcType=INTEGER},
+      meal = #{meal,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+<!--分页展示所有的普通号-->
+  <select id="selectByPageGood" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_phone
+    where beauty = 1 order by id limit #{index},#{count};
+  </select>
+
+  <!--普通号总数-->
+  <select id="goodPhone" resultType="java.lang.Long">
+    select count(*) from t_phone where beauty=1;
+  </select>
+<!--分页展示所有的靓号-->
+  <select id="selectByPageBatter" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_phone
+    where beauty = 2 order by id limit #{index},#{count};
+  </select>
+
+  <!--靓号总数-->
+  <select id="batterPhone" resultType="java.lang.Long">
+    select count(*) from t_phone where beauty=2;
+  </select>
+  <!--假删除-->
+  <update id="deleteById" parameterType="java.lang.Integer">
+    update t_phone
+    set status =0
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
