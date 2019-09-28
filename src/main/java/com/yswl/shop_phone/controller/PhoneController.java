@@ -66,9 +66,24 @@ public class PhoneController {
         return phoneService.queryPhoneByPageBatter(page,limit);
     }
 
-    //删除操作
-    @PostMapping("/deletePhoneById.do")
+    /**
+     * 删除操作
+     * @param id
+     * @return
+     */
+    @PostMapping("/phone/delete.do")
     public ResultVo deletePhone(int id){
         return phoneService.deletePhoneById(id);
+    }
+
+    /**
+     * 分页展示所有已删除的手机号
+     * @param page
+     * @param limit
+     * @return
+     */
+    @GetMapping("/phone/showdelete.do")
+    public PageVo<Phone> showDeletePhone(int page, int limit){
+        return phoneService.queryDeletePhone(page,limit);
     }
 }

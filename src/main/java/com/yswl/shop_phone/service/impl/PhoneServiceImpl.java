@@ -61,6 +61,7 @@ public class PhoneServiceImpl implements PhoneService {
         }
     }
 
+
     //分页查询全部普通手机号
     @Override
     public PageVo<Phone> queryPhoneByPageGood(int page, int limit) {
@@ -90,6 +91,17 @@ public class PhoneServiceImpl implements PhoneService {
             return ResultUtil.exec(false,"ERROR",e.getMessage());
         }
     }
+
+    //分页展示所有已删除的手机号
+    @Override
+    public PageVo<Phone> queryDeletePhone(int page, int limit) {
+        HashMap<String,Object> map=new HashMap<>();
+        map.put("index",(page-1)*limit);
+        map.put("count",limit);
+
+        return ResultUtil.exec(true,page,limit,phoneMapper.deletePhone(),phoneMapper.selectByPageDeletePhone(map));
+    }
+
 
 
 }

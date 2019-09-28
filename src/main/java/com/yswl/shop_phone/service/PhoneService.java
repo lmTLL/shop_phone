@@ -29,4 +29,7 @@ public interface PhoneService {
     ResultVo allPhone();
     //按id查询
     ResultVo queryById(Integer Id);
+
+    //查询已删除
+    PageVo<Phone> queryDeletePhone(int page,int limit);
 }

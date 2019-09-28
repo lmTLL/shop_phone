@@ -1,7 +1,7 @@
 package com.yswl.shop_phone.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.yswl.shop_phone.entity.Orders;
+
 import com.yswl.shop_phone.entity.Phone;
 
 import java.util.List;
@@ -35,5 +35,12 @@ public interface PhoneMapper extends BaseMapper<Phone> {
 
     //假删除
     int deleteById(Integer id);
+
+    //已删除的手机号总数
+    Long deletePhone();
+
+    //分页展示已删除的手机号
+    List<Phone> selectByPageDeletePhone(Map<String,Object> map);
+
 
 }
