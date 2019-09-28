@@ -16,7 +16,7 @@ public class Userinfo {
     @TableId(type = IdType.AUTO)
     private int id;
 
-    private String user;
+    private String username;
 
     private String path;
 

@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.jmx.support.RegistrationPolicy;
 
 @SpringBootApplication(scanBasePackages = "com.yswl.shop_phone")
-@MapperScan("com.yswlkj.yswl.dao")
+@MapperScan("com.yswl.shop_phone.dao")
 @Import(FdfsClientConfig.class)
 @EnableMBeanExport(registration = RegistrationPolicy.IGNORE_EXISTING)
 public class ShopPhoneApplication {
