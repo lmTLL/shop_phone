@@ -37,4 +37,14 @@ public class OrdersServiceImpl implements OrdersService {
         IPage iPage = ordersMapper.selectPage(page, queryWrapper);
        return ResultUtil.exec(true, "OK", iPage);
     }
+
+    @Override
+    public ResultVo queryNotOrders(Integer current, Integer size) {
+        IPage<Orders> page = new Page<Orders>(current,size);
+        QueryWrapper queryWrapper = new QueryWrapper();
+        queryWrapper.eq("status",0);
+        IPage iPage = ordersMapper.selectPage(page, queryWrapper);
+        return ResultUtil.exec(true, "OK", iPage);
+    }
+
 }
