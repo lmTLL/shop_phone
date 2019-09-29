@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin
 public class PhoneController {
+
     @Autowired
     private PhoneService phoneService;
-
 
     /**
      * 添加手机号

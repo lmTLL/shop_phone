@@ -37,4 +37,11 @@ public class OrdersController {
     public ResultVo queryNotOrders(Integer current,Integer size){
         return ordersService.queryNotOrders(current,size);
     }
+    /**
+     * 分页查询已发货的订单
+     */
+    @GetMapping("/orders/queryPut")
+    public ResultVo queryPutOrders(Integer current,Integer size){
+        return ordersService.queryPutOrders(current,size);
+    }
 }

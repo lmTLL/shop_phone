@@ -31,6 +31,7 @@ public class OrdersServiceImpl implements OrdersService {
 
     @Override
     public ResultVo queryHaveOrders(Integer current, Integer size) {
+
         IPage<Orders> page = new Page<Orders>(current,size);
         QueryWrapper queryWrapper = new QueryWrapper();
         queryWrapper.eq("status",1);
@@ -43,6 +44,15 @@ public class OrdersServiceImpl implements OrdersService {
         IPage<Orders> page = new Page<Orders>(current,size);
         QueryWrapper queryWrapper = new QueryWrapper();
         queryWrapper.eq("status",0);
+        IPage iPage = ordersMapper.selectPage(page, queryWrapper);
+        return ResultUtil.exec(true, "OK", iPage);
+    }
+
+    @Override
+    public ResultVo queryPutOrders(Integer current, Integer size) {
+        IPage<Orders> page = new Page<Orders>(current,size);
+        QueryWrapper queryWrapper = new QueryWrapper();
+        queryWrapper.eq("status",2);
         IPage iPage = ordersMapper.selectPage(page, queryWrapper);
         return ResultUtil.exec(true, "OK", iPage);
     }
