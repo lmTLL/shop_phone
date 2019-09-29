@@ -11,4 +11,6 @@ public interface OrdersService {
     ResultVo queryNotOrders(Integer current, Integer size);
     //查询已发货的订单
     ResultVo queryPutOrders(Integer current, Integer size);
+    //查询已完成的订单
+    ResultVo queryEndOrders(Integer current, Integer size);
 }

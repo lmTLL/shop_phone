@@ -30,7 +30,7 @@ public class OrdersController {
         return ordersService.queryHaveOrders(current, size);
     }
     /**
-     * 分页查询未支付订单
+     * 分页查询待支付订单
      */
     @GetMapping("/orders/queryNot.do")
     public ResultVo queryNotOrders(Integer current,Integer size){
@@ -42,5 +42,12 @@ public class OrdersController {
     @GetMapping("/orders/queryPut.do")
     public ResultVo queryPutOrders(Integer current,Integer size){
         return ordersService.queryPutOrders(current,size);
+    }
+    /**
+     * 分页查询已完成的订单
+     */
+    @GetMapping("/orders/queryPut.do")
+    public ResultVo queryEndOrders(Integer current,Integer size){
+        return ordersService.queryEndOrders(current,size);
     }
 }

@@ -30,6 +30,15 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     @Override
+    public ResultVo queryNotOrders(Integer current, Integer size) {
+        IPage<Orders> page = new Page<Orders>(current,size);
+        QueryWrapper queryWrapper = new QueryWrapper();
+        queryWrapper.eq("status",0);
+        IPage iPage = ordersMapper.selectPage(page, queryWrapper);
+        return ResultUtil.exec(true, "OK", iPage);
+    }
+
+    @Override
     public ResultVo queryHaveOrders(Integer current, Integer size) {
 
         IPage<Orders> page = new Page<Orders>(current,size);
@@ -40,19 +49,19 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     @Override
-    public ResultVo queryNotOrders(Integer current, Integer size) {
+    public ResultVo queryPutOrders(Integer current, Integer size) {
         IPage<Orders> page = new Page<Orders>(current,size);
         QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.eq("status",0);
+        queryWrapper.eq("status",2);
         IPage iPage = ordersMapper.selectPage(page, queryWrapper);
         return ResultUtil.exec(true, "OK", iPage);
     }
 
     @Override
-    public ResultVo queryPutOrders(Integer current, Integer size) {
+    public ResultVo queryEndOrders(Integer current, Integer size) {
         IPage<Orders> page = new Page<Orders>(current,size);
         QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.eq("status",2);
+        queryWrapper.eq("status",3);
         IPage iPage = ordersMapper.selectPage(page, queryWrapper);
         return ResultUtil.exec(true, "OK", iPage);
     }
