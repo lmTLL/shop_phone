@@ -18,9 +18,16 @@ public class OrdersController {
      * 获取所有订单列表
      * @return
      */
-    @GetMapping("/Orders/all.do")
-    public ResultVo allPhone(){
+    @GetMapping("/orders/all.do")
+    public ResultVo queryAllOrders(){
         return ordersService.allOrders();
+    }
+    /**
+     * 分页查询已支付订单
+     */
+    @GetMapping("/orders/queryHave")
+    public ResultVo queryHaveOrders(Integer current,Integer size){
+        return ordersService.queryHaveOrders(2, 3);
     }
 
 }
