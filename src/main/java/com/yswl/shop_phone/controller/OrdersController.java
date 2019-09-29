@@ -18,7 +18,7 @@ public class OrdersController {
      * 获取所有订单列表
      * @return
      */
-    @GetMapping("/orders/all.do")
+    @GetMapping("/orders/queryall.do")
     public ResultVo queryAllOrders(){
         return ordersService.allOrders();
     }
