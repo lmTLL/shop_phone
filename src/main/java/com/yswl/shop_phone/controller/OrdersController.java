@@ -1,6 +1,5 @@
 package com.yswl.shop_phone.controller;
 
-import com.baomidou.mybatisplus.extension.api.R;
 import com.yswl.shop_phone.common.vo.ResultVo;
 import com.yswl.shop_phone.service.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,21 +25,21 @@ public class OrdersController {
     /**
      * 分页查询已支付订单
      */
-    @GetMapping("/orders/queryHave")
+    @GetMapping("/orders/queryHave.do")
     public ResultVo queryHaveOrders(Integer current,Integer size){
         return ordersService.queryHaveOrders(current, size);
     }
     /**
      * 分页查询未支付订单
      */
-    @GetMapping("/orders/queryNot")
+    @GetMapping("/orders/queryNot.do")
     public ResultVo queryNotOrders(Integer current,Integer size){
         return ordersService.queryNotOrders(current,size);
     }
     /**
      * 分页查询已发货的订单
      */
-    @GetMapping("/orders/queryPut")
+    @GetMapping("/orders/queryPut.do")
     public ResultVo queryPutOrders(Integer current,Integer size){
         return ordersService.queryPutOrders(current,size);
     }
